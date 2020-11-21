@@ -35,7 +35,7 @@ public class Server_Thread extends Thread {
             gen = new Random();            // Instantiate the random number generator gen
             instream = new DataInputStream(toclientsocket.getInputStream());     // Obtain the DataInputStream from the socket
             outstream = new DataOutputStream(toclientsocket.getOutputStream());  // Similarly, obtain the DataOutputStream. /** DID I DO THIS THE CORRECT WAY? **/
-            out = new PrintWriter(outstream, true);     // Use the DataOutputStream object to instantiate the PrintWriter object. Be sure to use the PrintWriter constructor that takes two arguments. The first is the DataOutputStream object and the second is the value true which turns on autoflush.
+            out = new PrintWriter(outstream, true);     // Use the DataOutputStream object to instantiate the PrintWriter object. Be sure to use the PrintWriter constructor that takes two arguments. The first is the DataOutputStream object and the second is the value true which turns on autoflush
             in = new BufferedReader(new InputStreamReader(instream));     // Use the DataInputStream object to instantiate the BufferedReader
 
             // Next we need to instantiate and initialize the char matrix for the board.
