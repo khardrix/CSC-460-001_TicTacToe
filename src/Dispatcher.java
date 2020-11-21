@@ -12,7 +12,19 @@ public class Dispatcher {
 
     public static void main(String[] args) {
         try {
-            Socket connectToServer = new Socket("172.58.139.199", 7788);
+            Server_Thread serverThread;
+            Socket connectToServer = new Socket("localhost", 7788);
+
+
+            port = new ServerSocket(7788);
+
+            while(true) {
+                // Now, inside an infinite loop ( while (true) ) you need to have the dispatcher block and
+                    // listen for a connection on the ServerSocket variable port. Do this by calling port.accept()
+                connectToServer = port.accept();
+                serverThread = new Server_Thread(connectToServer);
+                serverThread.start();
+            }
         }
         catch(IOException e) {
             System.out.println(e);

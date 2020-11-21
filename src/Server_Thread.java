@@ -194,6 +194,8 @@ public class Server_Thread extends Thread {
                 out.print(playerMark);
             } else if (board[x][0] == serverMark) {
                 out.print(serverMark);
+            } else {
+                out.print(' ');
             }
             out.print(' ' + ' ');
             out.print('|');
@@ -203,6 +205,8 @@ public class Server_Thread extends Thread {
                 out.print(playerMark);
             } else if (board[x][1] == serverMark) {
                 out.print(serverMark);
+            } else {
+                out.print(' ');
             }
             out.print(' ' + ' ');
             out.print('|');
@@ -212,13 +216,15 @@ public class Server_Thread extends Thread {
                 out.print(playerMark);
             } else if (board[x][2] == serverMark) {
                 out.print(serverMark);
+            } else {
+                out.print(' ');
             }
             out.print(' ' + ' ');
 
             // end of line, to start next line
             out.println();
 
-            if(x == 1 || x == 2) {
+            if(x == 0 || x == 1) {
                 // line of equal signs to help divide up board for easier visibility
                 for (int k = 0; k < 15; k++) {
                     out.print('=');
