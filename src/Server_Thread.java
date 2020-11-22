@@ -37,6 +37,9 @@ public class Server_Thread extends Thread {
             outstream = new DataOutputStream(toclientsocket.getOutputStream());  // Similarly, obtain the DataOutputStream. /** DID I DO THIS THE CORRECT WAY? **/
             out = new PrintWriter(outstream, true);     // Use the DataOutputStream object to instantiate the PrintWriter object. Be sure to use the PrintWriter constructor that takes two arguments. The first is the DataOutputStream object and the second is the value true which turns on autoflush
             in = new BufferedReader(new InputStreamReader(instream));     // Use the DataInputStream object to instantiate the BufferedReader
+            // toclientsocket = new InstructorClient;
+
+            board = new char[3][3];
 
             // Next we need to instantiate and initialize the char matrix for the board.
                 // Create a 3x3 char array for the board. Walk through the board matrix and assign each cell a blank “ “
@@ -67,6 +70,8 @@ public class Server_Thread extends Thread {
         // A Boolean variable turn initialized to the result of the flip() method
         boolean turn = flip();
 
+
+
         // If turn is true, then it is the player making the first move. As the assignment indicates, we should
             // send a message “NONE” to the client via the PrintWriter object that I named, out.
             // We can do this with out.println(“NONE”);
@@ -85,6 +90,8 @@ public class Server_Thread extends Thread {
                     // read player's move using BufferedReader (see readLine() method)
                     response = in.readLine();
 
+
+
                     // entering a "spacer line" for readability
                     out.println();
                 }
@@ -100,9 +107,10 @@ public class Server_Thread extends Thread {
                 // do the same for col  but use data[2]
                 col = Integer.parseInt(data[2]);
 
-                /* put an ‘O’ into selected cell of the matrix */
+                // put an ‘O’ into selected cell of the matrix
+                board[row][col] = 'O';
 
-                /* call the printboard() method defined later in this document */
+                // call the printboard() method defined later in this document
                 printBoard();
 
                 // add two "spacer lines" to help with readability between player and server moves
@@ -136,6 +144,7 @@ public class Server_Thread extends Thread {
                 counter++;
 
                 /** set the board[row][col] to an ‘X’ **/
+                board[row][col] = 'X';
 
                 //
 
