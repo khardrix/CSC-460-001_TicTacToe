@@ -25,7 +25,7 @@ public class Dispatcher {
                 connectToServer = port.accept();
 
                 serverThread = new Server_Thread(connectToServer);
-                if( connectToServer.isConnected()) {
+                if(connectToServer.isConnected()) {
                     System.out.println("SUCCESSFUL CONNECTION!");
                 } else {
                     System.out.println("CONNECTION NOT SUCCESSFUL!");
@@ -37,7 +37,5 @@ public class Dispatcher {
             System.out.println(e);
             e.printStackTrace();
         }
-
-
     }
 }

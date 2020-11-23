@@ -26,7 +26,8 @@ public class Server_Thread extends Thread {
     private Random gen;                     // used to select random moves
     private char [][] board;                // I implemented my game board as a matrix of char to make printing easier as well as comparisons.
     private int row, col;                   // Obviously, to hold the current row and/or column values for moves
-    private char playerMark = 'O', serverMark = 'X';    // Used to mark an 'O' (for the player) and a 'X' (for the Server)
+    private char playerMark, serverMark;    // Used to mark an 'O' (for the player) and a 'X' (for the Server)
+    private static boolean turn;
 
 
     public Server_Thread(Socket socket) {
@@ -119,11 +120,11 @@ public class Server_Thread extends Thread {
 
                     if (checkWin()) {
                         // send message MOVE -1 -1 WIN to the client via PrintWriter object
-                        out.println("MOVE -1 -1 WIN");
+                        out.println("MOVE -1 -1 WIN");     /** NOT SURE IF THIS IS CORRECT **/
                     }
                     else {
                         // send message MOVE -1 -1 TIE to the client
-                        out.println("MOVE -1 -1 TIE");
+                        out.println("MOVE -1 -1 TIE");     /** NOT SURE IF THIS IS CORRECT **/
                     }
                 }
             }
@@ -138,6 +139,8 @@ public class Server_Thread extends Thread {
 
                 /** set the board[row][col] to an ‘X’ **/
                 board[row][col] = 'X';
+
+                //
 
                 // see below for method’s description
                 printBoard();
@@ -187,24 +190,13 @@ public class Server_Thread extends Thread {
     // print out the game board in a way that looks OK. Be sure to include enough whitespace so that it is easy and
     // clear to understand where one board print ends and another begins.
     public void printBoard(){
-
-        /**
-         System.out.println("\n\nSERVER Print");
-
-         for (int x = 0; x <= 2; x++) {
-            System.out.println(board[x][0] + " | " + board[x][1] + " | " + board[x][2] );
-            if (x != 2)
-                System.out.println("----------");
-         }
-         **/
-
-
         // int variable to help store the row that is currently being printed
         int x = 0;
 
         // for loop to go through the three rows of the board
         for(int i = 0; i < 3; i++) {
-            out.print(' ' + ' ');
+            System.out.print(' ');
+            System.out.print(' ');
             if (board[x][0] == playerMark) {
                 System.out.print(playerMark);
             } else if (board[x][0] == serverMark) {
@@ -212,10 +204,12 @@ public class Server_Thread extends Thread {
             } else {
                 System.out.print(' ');
             }
-            System.out.print(' ' + ' ');
+            System.out.print(' ');
+            System.out.print(' ');
             System.out.print('|');
 
-            System.out.print(' ' + ' ');
+            System.out.print(' ');
+            System.out.print(' ');
             if (board[x][1] == playerMark) {
                 System.out.print(playerMark);
             } else if (board[x][1] == serverMark) {
@@ -223,10 +217,12 @@ public class Server_Thread extends Thread {
             } else {
                 System.out.print(' ');
             }
-            System.out.print(' ' + ' ');
+            System.out.print(' ');
+            System.out.print(' ');
             System.out.print('|');
 
-            System.out.print(' ' + ' ');
+            System.out.print(' ');
+            System.out.print(' ');
             if (board[x][2] == playerMark) {
                 System.out.print(playerMark);
             } else if (board[x][2] == serverMark) {
@@ -234,14 +230,15 @@ public class Server_Thread extends Thread {
             } else {
                 System.out.print(' ');
             }
-            System.out.print(' ' + ' ');
+            System.out.print(' ');
+            System.out.print(' ');
 
             // end of line, to start next line
             System.out.println();
 
-            if(x == 0 || x == 1) {
+            if(x == 1 || x == 2) {
                 // line of equal signs to help divide up board for easier visibility
-                for (int k = 0; k < 15; k++) {
+                for (int k = 0; k < 18; k++) {
                     System.out.print('=');
                 }
             }
@@ -254,6 +251,8 @@ public class Server_Thread extends Thread {
 
             // increment the int variable "x"
             x++;
+
+            System.out.println("\n\nSERVER PRINT");
         }
 
     }
@@ -302,5 +301,10 @@ public class Server_Thread extends Thread {
     //***** METHOD ADDED BY RYAN HUFFMAN *****//
     private boolean isEmpty(int row, int col) {
         return board[row][col] == ' ';
+    }
+
+
+    public boolean getTurn(){
+        return turn;
     }
 }
