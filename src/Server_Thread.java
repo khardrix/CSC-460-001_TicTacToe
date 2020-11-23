@@ -190,6 +190,15 @@ public class Server_Thread extends Thread {
     // print out the game board in a way that looks OK. Be sure to include enough whitespace so that it is easy and
     // clear to understand where one board print ends and another begins.
     public void printBoard(){
+        System.out.println("\n\nSERVER Print");
+        for (int x = 0; x <= 2; x++)
+        {
+            System.out.println(board[x][0] + " | " + board[x][1] + " | " + board[x][2] );
+            if (x != 2)
+                System.out.println("----------");
+        }
+
+        /**
         // int variable to help store the row that is currently being printed
         int x = 0;
 
@@ -254,7 +263,7 @@ public class Server_Thread extends Thread {
 
             System.out.println("\n\nSERVER PRINT");
         }
-
+**/
     }
 
 
