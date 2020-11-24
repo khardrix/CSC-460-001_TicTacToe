@@ -7,14 +7,13 @@ import java.net.*;
 public class Dispatcher {
 
     // CLASS VARIABLE(s) declaration(s)
-    public static ServerSocket port;         // "GLOBAL STATIC VARIABLE .... " public or private?
+    public static ServerSocket port;
 
 
     public static void main(String[] args) {
         try {
             Server_Thread serverThread;
             port = new ServerSocket(7788);
-// Why did you do this???            Socket connectToServer = new Socket("localhost", 7788);
 
             Socket  connectToServer;  // just do this!
 
