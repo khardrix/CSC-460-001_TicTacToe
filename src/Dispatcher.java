@@ -14,22 +14,16 @@ public class Dispatcher {
         try {
             Server_Thread serverThread;
             port = new ServerSocket(7788);
-            Socket connectToServer = new Socket("localhost", 7788);
+// Why did you do this???            Socket connectToServer = new Socket("localhost", 7788);
 
+            Socket  connectToServer;  // just do this!
 
 
 
             while(true) {
-                // Now, inside an infinite loop ( while (true) ) you need to have the dispatcher block and
-                    // listen for a connection on the ServerSocket variable port. Do this by calling port.accept()
                 connectToServer = port.accept();
 
                 serverThread = new Server_Thread(connectToServer);
-                if(connectToServer.isConnected()) {
-                    System.out.println("SUCCESSFUL CONNECTION!");
-                } else {
-                    System.out.println("CONNECTION NOT SUCCESSFUL!");
-                }
                 serverThread.start();
             }
         }
